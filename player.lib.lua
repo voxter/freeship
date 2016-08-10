@@ -1,6 +1,4 @@
-
 local dbh = freeswitch.Dbh("odbc://freeship:postgres:postgres");
-assert(dbh:connected()); -- exits the script if we didn't connect properly
 
 local seed = session:getVariable("created_time");
 math.randomseed(seed);
@@ -147,47 +145,3 @@ function remove_ships(player_id)
 	freeswitch.consoleLog("info", "[FREESHIP] Removing ships for player ID: " .. tostring(player_id));
 	dbh:query("DELETE FROM map WHERE player_id = " .. tostring(player_id));
 end
-
-place_ship(41, 0);
-place_ship(41, 1);
-session:sleep(1000);
-place_ship(42, 0);
-place_ship(42, 1);
-session:sleep(1000);
-place_ship(43, 0);
-place_ship(43, 1);
-session:sleep(1000);
-place_ship(44, 0);
-place_ship(44, 1);
-session:sleep(1000);
-place_ship(45, 0);
-place_ship(45, 1);
-session:sleep(1000);
-place_ship(46, 0);
-place_ship(46, 1);
-session:sleep(1000);
-place_ship(47, 0);
-place_ship(47, 1);
-session:sleep(1000);
-place_ship(48, 0);
-place_ship(48, 1);
-session:sleep(1000);
-place_ship(49, 0);
-place_ship(49, 1);
-session:sleep(1000);
-place_ship(50, 0);
-place_ship(50, 1);
-session:sleep(3000);
-
-
-
-remove_ships(41);
-remove_ships(42);
-remove_ships(43);
-remove_ships(44);
-remove_ships(45);
-remove_ships(46);
-remove_ships(47);
-remove_ships(48);
-remove_ships(49);
-remove_ships(50);
