@@ -168,7 +168,7 @@ class FreeShip {
                     }
                     else if(isset($event['media_path']) &&
                             ($this->breakAfterMissile == 'hit' && $event['media_path'] == 'freeship/youwerehit-2.wav' ||
-                             $this->breakAfterMissile == 'miss' && $event['media_path'] == 'freeship/missilelaunch.wav') &&
+                             $this->breakAfterMissile == 'miss' && $event['media_path'] == 'freeship/miss.wav') &&
                             $event['Channel-Call-UUID'] == $uuid) {
                         // Get next turn player id, send next_turn event for that person
                         $this->dtmf = array();
