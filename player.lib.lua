@@ -136,8 +136,10 @@ function place_ship(player_id, ship_type)
 		dbh:query("INSERT INTO map VALUES (" .. ship["coordinates"]["x2"] .. ", " .. ship["coordinates"]["y2"] .. ", 1, " .. player_id .. ", " .. ship_type .. ")");
 
 		if (ship_type == 1) then
-			dbh:query("INSERT INTO map VALUES (" .. ship["coordinates"]["x3"] .. ", " .. ship["coordinates"]["y3"] .. ", 1, " .. player_id .. ", " .. ship_type .. ")");			
-		end
+		    dbh:query("INSERT INTO map VALUES (" .. ship["coordinates"]["x3"] .. ", " .. ship["coordinates"]["y3"] .. ", 1, " .. player_id .. ", " .. ship_type .. ")");			   return "{\"event\":\"setup\",\"grid\":{\"x1\":"..ship["coordinates"]["x1"]..",\"y1\":"..ship["coordinates"]["y1"]..",\"x2\":"..ship["coordinates"]["x2"]..",\"y2\":"..ship["coordinates"]["y2"]..",\"x3\":"..ship["coordinates"]["x3"]..",\"y3\":"..ship["coordinates"]["y3"].."}}";
+		else
+                    return "{\"event\":\"setup\",\"grid\":{\"x1\":"..ship["coordinates"]["x1"]..",\"y1\":"..ship["coordinates"]["y1"]..",\"x2\":"..ship["coordinates"]["x2"]..",\"y2\":"..ship["coordinates"]["y2"].."}}";
+                end
 	end
 end
 

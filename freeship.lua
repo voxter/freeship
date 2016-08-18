@@ -89,11 +89,13 @@ session:setHangupHook("hangup_hook", player_id);
 
 session_id = session:getVariable("uuid");
 session:setVariable("fs_send_unsupported_info", "true");
-api:executeString("uuid_send_info " .. session_id .. " " .. player_id .. ":" .. player_pin);
+api:executeString("uuid_send_info " .. session_id .. " {\"event\":\"login\",\"player_id\":" .. player_id .. ",\"score\":0,\"lives\":5}");
 
 -- Place player ships
-place_ship(player_id, 0);
-place_ship(player_id, 1);
+ship1 = place_ship(player_id, 0);
+api:executeString("uuid_send_info " .. session_id .. " " .. ship1);
+ship2 = place_ship(player_id, 1);
+api:executeString("uuid_send_info " .. session_id .. " " .. ship2);
 
 -- Provide player with ID & PIN
 freeswitch.consoleLog("debug", "[FREESHIP] Player ID " .. player_id .. " has joined with PIN " .. player_pin);
@@ -103,12 +105,12 @@ session:streamFile("freeship/welcome.wav");
 -- Insert player into game
 dbh:query("INSERT INTO players VALUES (" .. player_id .. ", " .. player_pin .. ", '" .. session:getVariable("uuid") .. "', default, 't')");
 
-session:streamFile("freeship/youareplayernumber.wav");
-session:execute("say", "en name_spelled iterated " .. player_id);
-session:streamFile("freeship/yourpinis.wav");
-session:execute("say", "en name_spelled iterated " .. player_pin);
-session:streamFile("freeship/yourpinis.wav");
-session:execute("say", "en name_spelled iterated " .. player_pin);
+--session:streamFile("freeship/youareplayernumber.wav");
+--session:execute("say", "en name_spelled iterated " .. player_id);
+--session:streamFile("freeship/yourpinis.wav");
+--session:execute("say", "en name_spelled iterated " .. player_pin);
+--session:streamFile("freeship/yourpinis.wav");
+--session:execute("say", "en name_spelled iterated " .. player_pin);
 session:sleep(100);
 
 freeswitch.consoleLog("debug", "Number of players: " .. get_players());
